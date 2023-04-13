@@ -1,0 +1,129 @@
+@font-face {
+	font-family: 'Crayon Hand';
+	src: url(/fonts/CrayonHand.ttf);
+}
+
+:root {
+	height: 100%;
+	--cor-texto: #666;
+	--cor-fundo: #ddd;
+	--cor-carta: #e77;
+	--fundo-botao: url(images/sol.png);
+}
+
+:root.modo-escuro {
+	--cor-texto: #bbb;
+	--cor-fundo: #333;
+	--cor-carta: #44a;
+	--fundo-botao: url(images/lua.png);
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	font-family: 'Crayon Hand', sans-serif;
+	display: grid;
+	grid-template-rows: 1fr max-content 1fr;
+	grid-template-areas: "titulo" "tabuleiro" ".";
+	color: var(--cor-texto);
+	background-color: var(--cor-fundo);
+	transition: color .1s, background-color .1s;
+}
+
+h1 {
+	font-size: 42px;
+	padding: 0 60px;
+	grid-area: titulo;
+	text-align: center;
+}
+
+.botao-modo-escuro {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 60px;
+	height: 60px;
+	background: var(--fundo-botao) 0 0 / cover, transparent;
+	border: none;
+	outline: none;
+}
+
+.tabuleiro-rolagem {
+	width: 100%;
+	overflow: auto;
+	text-align: center;
+	grid-area: tabuleiro;
+}
+
+.tabuleiro {
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 16px 0;
+	width: 100%;
+	min-width: 360px;
+	max-width: 500px;
+	padding: 20px 0;
+}
+
+.carta {
+	width: calc(85% / 4);
+	aspect-ratio: 4/5;
+	background: url(images/carta.png) 0 0 / cover, var(--cor-carta);
+	border: solid 6px #eee;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px #0004;
+	box-sizing: border-box;
+	transition: background-color .1s, transform .2s ease-out;
+}
+
+.carta.virando {
+	transform: scaleX(0);
+	transition-timing-function: ease, ease-in;
+}
+
+.carta.correta {
+	animation: carta-correta 0.2s alternate ease-in-out 2;
+}
+
+@keyframes carta-correta {
+	from {
+		transform: translateY(0) scale(1);
+	}
+
+	to {
+		transform: translateY(-6px) scale(1.05);
+	}
+}
+
+.carta0 {
+	background-image: url(images/0.png);
+}
+
+.carta1 {
+	background-image: url(images/1.png);
+}
+
+.carta2 {
+	background-image: url(images/2.png);
+}
+
+.carta3 {
+	background-image: url(images/3.png);
+}
+
+.carta4 {
+	background-image: url(images/4.png);
+}
+
+.carta5 {
+	background-image: url(images/5.png);
+}
+
+.carta6 {
+	background-image: url(images/6.png);
+}
+
+.carta7 {
+	background-image: url(images/7.png);
+}
